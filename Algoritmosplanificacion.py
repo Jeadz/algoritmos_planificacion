@@ -1,4 +1,6 @@
 import operator
+import matplotlib.pyplot as plt
+import numpy as np
 class Algoritmosplanificacion:
     def __init__(self):
         self.datos = []
@@ -6,7 +8,7 @@ class Algoritmosplanificacion:
         self.prioridad_proceso = []
 
     def getDatos(self):
-        self.numeroProcesos = input("Ingrese número de procesos: ")
+        self.numeroProcesos = int(input("Ingrese número de procesos: "))
         for i in range(int(self.numeroProcesos)):
             temp_tiempo = int(input("Ingrese tiempo para el proceso #" + str(i + 1) + ": "))
             temp_prioridad = int(input("Ingrese la prioriodad del proceso #" + str(i + 1) + ": "))
@@ -30,6 +32,24 @@ class Algoritmosplanificacion:
         print("| Promedio tiempo de retorno: " + str(round(int(tiempoTotalPromedioRetorno) / int(self.numeroProcesos), 2)) + "|")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
+        #Se crea el diagrama vacío
+        fig, gantt = plt.subplots()
+        #x_pos y y_pos son para darle direccionamiento a los ejes
+        #Es decir, para saber de cuanto en cuanto tienen que extenderse
+        x_pos = np.arange(len(tiempoEspera))
+        y_pos = np.arange(len(range(0,self.numeroProcesos + 1)))
+        #Etiquetas de texto en los ejes
+        gantt.set_xlabel("TIEMPO")
+        gantt.set_ylabel("NÚMERO DE PROCESO ALGORITMO FCFS")
+        gantt.set_xticks(x_pos)
+        gantt.set_xticklabels(tiempoEspera)
+        gantt.set_yticks(y_pos)
+        gantt.set_yticklabels(range(0, self.numeroProcesos + 1))
+        #Ubicación de los procesos y el tiempo en el gráfico
+        #Muestra el gráfico
+        plt.show()
+
+
     def Sjf(self):
         tiempoTotalEspera = 0.0
         tiempoTotalPromedioRetorno = 0.0
@@ -51,7 +71,23 @@ class Algoritmosplanificacion:
         print("| Promedio tiempo de espera: " + str(round(tiempoTotalEspera / int(self.numeroProcesos), 2)) + "  |")
         print("| Promedio tiempo de retorno: " + str(round(int(tiempoTotalPromedioRetorno) / int(self.numeroProcesos), 2)) + " |")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        # Se crea el diagrama vacío
+        fig, gantt = plt.subplots()
+        # x_pos y y_pos son para darle direccionamiento a los ejes
+        # Es decir, para saber de cuanto en cuanto tienen que extenderse
+        x_pos = np.arange(len(tiempoEspera))
+        y_pos = np.arange(len(range(0, self.numeroProcesos + 1)))
+        # Etiquetas de texto en los ejes
+        gantt.set_xlabel("TIEMPO")
+        gantt.set_ylabel("NÚMERO DE PROCESO ALGORITMO SJF")
+        gantt.set_xticks(x_pos)
+        gantt.set_xticklabels(tiempoEspera)
+        gantt.set_yticks(y_pos)
+        gantt.set_yticklabels(range(0, self.numeroProcesos + 1))
+        # Ubicación de los procesos y el tiempo en el gráfico
 
+        # Muestra el gráfico
+        plt.show()
 
     def Prioridad(self):
         tiempoTotalEspera = 0.0
@@ -81,6 +117,21 @@ class Algoritmosplanificacion:
         print("| Promedio tiempo de espera: " + str(round(tiempoTotalEspera / int(self.numeroProcesos), 2)) + "  |")
         print("| Promedio tiempo de retorno: " + str(round(int(tiempoTotalPromedioRetorno) / int(self.numeroProcesos), 2)) + " |")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        # Se crea el diagrama vacío
+        fig, gantt = plt.subplots()
+        # x_pos y y_pos son para darle direccionamiento a los ejes
+        # Es decir, para saber de cuanto en cuanto tienen que extenderse
+        x_pos = np.arange(len(tiempoEspera))
+        y_pos = np.arange(len(range(0, self.numeroProcesos + 1)))
+        # Etiquetas de texto en los ejes
+        gantt.set_xlabel("TIEMPO")
+        gantt.set_ylabel("NÚMERO DE PROCESO ALGORITMO PRIORIDAD")
+        gantt.set_xticks(x_pos)
+        gantt.set_xticklabels(tiempoEspera)
+        gantt.set_yticks(y_pos)
+        gantt.set_yticklabels(range(0, self.numeroProcesos + 1))
+        # Ubicación de los procesos y el tiempo en el gráfico
 
-
+        # Muestra el gráfico
+        plt.show()
 

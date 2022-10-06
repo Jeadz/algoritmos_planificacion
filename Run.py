@@ -1,5 +1,5 @@
 from Algoritmosplanificacion import Algoritmosplanificacion
-
+from Graficas import diagrama_gantt
 
 class Run:
 
@@ -24,6 +24,9 @@ class Run:
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         print("|     ALGORITMO POR PRIORIDAD      |")
         self.proceso.Prioridad()
+
+
+
 
 if __name__ == "__main__":
     Run().inicio()
