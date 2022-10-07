@@ -20,7 +20,7 @@ class Algoritmosplanificacion:
         tiempoTotalPromedioRetorno = 0.0
         tiempoEspera = [0]
         D = list(self.datos)
-        for i in range(1, int(self.numeroProcesos)):
+        for i in range(1, int(self.numeroProcesos + 1)):
             temp = int(D[i - 1]) + int(tiempoEspera[i - 1])
             tiempoEspera.append(temp)
         for i in range(0, int(self.numeroProcesos)):
@@ -31,23 +31,36 @@ class Algoritmosplanificacion:
         print("| Promedio tiempo de espera: " + str(round(tiempoTotalEspera / int(self.numeroProcesos), 2)) + "  |")
         print("| Promedio tiempo de retorno: " + str(round(int(tiempoTotalPromedioRetorno) / int(self.numeroProcesos), 2)) + "|")
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-
         #Se crea el diagrama vacío
         fig, gantt = plt.subplots()
+        ht = 50
+        hbar = 10
         #x_pos y y_pos son para darle direccionamiento a los ejes
         #Es decir, para saber de cuanto en cuanto tienen que extenderse
         x_pos = np.arange(len(tiempoEspera))
         y_pos = np.arange(len(range(0,self.numeroProcesos + 1)))
         #Etiquetas de texto en los ejes
         gantt.set_xlabel("TIEMPO")
-        gantt.set_ylabel("NÚMERO DE PROCESO ALGORITMO FCFS")
+        gantt.set_ylabel("NÚMERO DE PROCESO ")
+        gantt.set_title("ALGORITMO FCFS")
         gantt.set_xticks(x_pos)
         gantt.set_xticklabels(tiempoEspera)
         gantt.set_yticks(y_pos)
         gantt.set_yticklabels(range(0, self.numeroProcesos + 1))
+        gantt.grid(True)
         #Ubicación de los procesos y el tiempo en el gráfico
+
+        procesos_numero = list(y_pos)
+        duracion_tiempoEspera = list(tiempoEspera)
+
+        """
+        for i in procesos_numero:
+            gantt.broken_barh([(procesos_numero[i],duracion_tiempoEspera[i])], (hbar,10),facecolor ="g")
+        """
+
         #Muestra el gráfico
         plt.show()
+
 
 
     def Sjf(self):
@@ -59,7 +72,7 @@ class Algoritmosplanificacion:
         datos_reorganizados = list(self.datos)
         datos_reorganizados.pop(min_list)
         datos_reorganizados.insert(0, min_list)
-        for i in range(1, int(self.numeroProcesos)):
+        for i in range(1, int(self.numeroProcesos + 1)):
             temp = int(datos_reorganizados[i - 1]) + int(tiempoEspera[i - 1])
             tiempoEspera.append(temp)
         for i in range(0, int(self.numeroProcesos)):
@@ -105,7 +118,7 @@ class Algoritmosplanificacion:
         lista_timpo_prioridad = list(lista_timpo_prioridad)
 
 
-        for i in range(1, int(self.numeroProcesos)):
+        for i in range(1, int(self.numeroProcesos + 1)):
             temp = int(lista_timpo_prioridad[i - 1]) + int(tiempoEspera[i - 1])
             tiempoEspera.append(temp)
         for i in range(0, int(self.numeroProcesos)):
